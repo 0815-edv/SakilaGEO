@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CityController {
 
-    private CityRepo repo = null;
+    private CityRepo repo;
     
     public CityController(CityRepo repo){
         this.repo = repo;

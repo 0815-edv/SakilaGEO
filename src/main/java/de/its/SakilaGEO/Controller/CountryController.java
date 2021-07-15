@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CountryController {
     
-    private CountryRepo repo = null;
+    private CountryRepo repo;
     
     public CountryController(CountryRepo repo){
         this.repo = repo;
