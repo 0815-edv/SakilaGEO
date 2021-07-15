@@ -5,6 +5,7 @@
  */
 package de.its.SakilaGEO.Controller;
 
+import de.its.SakilaGEO.City;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CityController {
 
     @GetMapping("/get/cities")
-    public Object getCities() {
+    public City getCities() {
         return null;
     }
 }

@@ -5,6 +5,7 @@
  */
 package de.its.SakilaGEO.Controller;
 
+import de.its.SakilaGEO.Country;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CountryController {
     @GetMapping("/get/countries")
-    public Object getCountries(){
+    public Country getCountries(){
         return null;
     }
     
