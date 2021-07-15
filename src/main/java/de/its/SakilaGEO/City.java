@@ -23,14 +23,19 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long cityID;
     private String name;
-    private int countryID;
+    private long countryID;
 
-    public City(long cityID, String name, int countryID) {
+    public City(long cityID, String name, long countryID) {
         this.cityID = cityID;
         this.name = name;
         this.countryID = countryID;
     }
 
+    public City(String name, long countryID){
+        this.name = name;
+        this.countryID = countryID;
+    }
+    
     public City() {
     }
 
@@ -50,7 +55,7 @@ public class City {
         this.name = name;
     }
 
-    public int getCountryID() {
+    public long getCountryID() {
         return countryID;
     }
 

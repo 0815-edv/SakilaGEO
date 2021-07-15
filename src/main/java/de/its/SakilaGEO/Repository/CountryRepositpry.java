@@ -6,6 +6,7 @@
 package de.its.SakilaGEO.Repository;
 
 import de.its.SakilaGEO.Country;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,4 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface CountryRepositpry extends JpaRepository<Country, Long> {
 
+    Optional<Country> findByName(String name);
 }

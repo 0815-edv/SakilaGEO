@@ -29,7 +29,12 @@ public class Country {
         this.name = name;
     }
 
-    public Country() {
+    public Country(String name) {
+        this.name = name;
+    }
+    
+    public Country(){
+        
     }
 
     public Long getCountry_id() {
@@ -47,5 +52,4 @@ public class Country {
     public void setName(String name) {
         this.name = name;
     }
-
 }
