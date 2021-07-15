@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repository;
+package de.its.SakilaGEO.Repository;
 
-import de.its.SakilaGEO.City;
+import de.its.SakilaGEO.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author markus
  */
-public interface CityRepo extends JpaRepository<City, Long>{
-    
+public interface CountryRepositpry extends JpaRepository<Country, Long> {
+
 }

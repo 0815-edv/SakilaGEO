@@ -5,11 +5,11 @@
  */
 package de.its.SakilaGEO.Controller;
 
-import Repository.CountryRepo;
 import de.its.SakilaGEO.Country;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import de.its.SakilaGEO.Repository.CountryRepositpry;
 
 /**
  *
@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class CountryController {
-    
-    private CountryRepo repo;
-    
-    public CountryController(CountryRepo repo){
+
+    private CountryRepositpry repo;
+
+    public CountryController(CountryRepositpry repo) {
         this.repo = repo;
     }
-    
+
     @GetMapping("/get/countries")
-    public List<Country> getCountries(){
+    public List<Country> getCountries() {
         return repo.findAll();
     }
-    
+
 }

@@ -5,16 +5,27 @@
  */
 package de.its.SakilaGEO;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author flori
  */
+@Entity
+@Table(name = "city")
 public class City {
-    private int cityID;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cityID;
     private String name;
     private int countryID;
 
-    public City(int cityID, String name, int countryID) {
+    public City(long cityID, String name, int countryID) {
         this.cityID = cityID;
         this.name = name;
         this.countryID = countryID;
@@ -23,11 +34,11 @@ public class City {
     public City() {
     }
 
-    public int getCityID() {
+    public long getCityID() {
         return cityID;
     }
 
-    public void setCityID(int cityID) {
+    public void setCityID(long cityID) {
         this.cityID = cityID;
     }
 
@@ -46,6 +57,5 @@ public class City {
     public void setCountryID(int countryID) {
         this.countryID = countryID;
     }
-    
-    
+
 }
