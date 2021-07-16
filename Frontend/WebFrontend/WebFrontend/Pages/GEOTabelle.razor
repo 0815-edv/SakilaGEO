@@ -1,0 +1,27 @@
+﻿<h3>GEOTabelle</h3>
+<h1> Ausgabe der GEODB Werte</h1>
+<TableTemplate Items="countries" Context="countrie">
+    <TableHeader>
+        <th>ID</th>
+        <th>Name</th>
+    </TableHeader>
+    <RowTemplate>
+        <td>@countrie.id</td>
+        <td>@countrie.name</td>
+    </RowTemplate>
+</TableTemplate>
+
+@code {
+    private List<country> countries = new()
+    {
+        new country { id = 1, name = "test" }
+
+
+    };
+
+    public class country {
+        public int id { get; set; }
+        public string name { get; set; }
+
+    }
+}

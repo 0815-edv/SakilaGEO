@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wv6UdHOZ+J4COgvnNeWYvH49SjJwVF6p0udUzwheAuRFFwEZnkG/o+A6iedDs6eociaQkQxx9QS8mgIIrx8LOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\flori\\OneDrive\\Programmierung\\Zusammenarbeit\\SakilaGEO\\Frontend\\WebFrontend\\WebFrontend\\WebFrontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\flori\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
