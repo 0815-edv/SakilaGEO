@@ -52,4 +52,24 @@ public class Country {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        boolean isEqual = false;
+        if (!(o instanceof Country)) {
+            return false;
+        }
+        var compare = (Country) o;
+        if (this.getName().equals(compare.getName())) {
+           return true;
+        }
+        return isEqual;
+    }
+    
+    public Country update(Country update){
+        if(!this.getName().equals(update.getName())){
+            this.setName(update.getName());
+        }
+        return this;
+    }
 }

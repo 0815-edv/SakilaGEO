@@ -31,11 +31,11 @@ public class City {
         this.countryID = countryID;
     }
 
-    public City(String name, long countryID){
+    public City(String name, long countryID) {
         this.name = name;
         this.countryID = countryID;
     }
-    
+
     public City() {
     }
 
@@ -59,8 +59,31 @@ public class City {
         return countryID;
     }
 
-    public void setCountryID(int countryID) {
+    public void setCountryID(long countryID) {
         this.countryID = countryID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean isEqual = false;
+        if (!(o instanceof City)) {
+            return false;
+        }
+        var compare = (City) o;
+        if (this.getName().equals(compare.getName())) {
+            if (this.countryID == compare.countryID) {
+                return true;
+            }
+        }
+        return isEqual;
+    }
+    
+    public City update(City update){
+        if(!this.getName().equals(update.getName())){
+            this.setName(update.getName());
+            this.setCountryID(update.countryID);
+        }
+        return this;
     }
 
 }
