@@ -1,4 +1,8 @@
-﻿<h3>GEOTabelle</h3>
+﻿@using System.Net.Http
+@using WebFrontend.Data
+@inject HttpClient Http
+
+<h3>GEOTabelle</h3>
 <h1> Ausgabe der GEODB Werte</h1>
 <TableTemplate Items="countries" Context="countrie">
     <TableHeader>
@@ -12,16 +16,12 @@
 </TableTemplate>
 
 @code {
-    private List<country> countries = new()
+    private List<Country> countries = new()
     {
-        new country { id = 1, name = "test" }
+            new Country { id = 1, name = "test" }
 
 
-    };
+        };
 
-    public class country {
-        public int id { get; set; }
-        public string name { get; set; }
 
-    }
 }
