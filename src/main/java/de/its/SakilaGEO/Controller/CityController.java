@@ -55,6 +55,21 @@ public class CityController {
         }
         return null;
     }
+    
+    /**
+     * Get Cities By Country ID from Database
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(path = "/get/cityByID", produces = "application/json")
+    public ResponseEntity<List<City>> getCitybyID(@RequestParam(value = "id", required = true) long id) {
+        var city = repo.findBycountryID(id);
+        if (!city.isEmpty()) {
+            return ResponseEntity.ok(city.get());
+        }
+        return null;
+    }
 
     /**
      * Add City to Database

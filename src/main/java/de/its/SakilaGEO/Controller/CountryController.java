@@ -5,7 +5,6 @@
  */
 package de.its.SakilaGEO.Controller;
 
-import de.its.SakilaGEO.City;
 import de.its.SakilaGEO.Country;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
