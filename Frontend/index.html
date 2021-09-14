@@ -2,35 +2,56 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <meta charset="utf8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <meta charset="utf8" />
 
-    <title>Page Title</title>
+  <title>SekilaGEO</title>
 </head>
 
 <body>
-    <table>
-        <tr>
-          <th>Berlin</th>
-          <th>Hamburg</th>
-          <th>München</th>
-        </tr>
-        <tr>
-          <td>Miljöh</td>
-          <td>Kiez</td>
-          <td>Bierdampf</td>
-         </tr>
-         <tr>
-           <td>Buletten</td>
-           <td>Frikadellen</td>
-           <td>Fleischpflanzerl</td>
-         </tr>
-      </table>
+  <table id="tab" class="table">
+    <tr>
+      <th class="col">ID</th>
+      <th class="col">Stadt</th>
+      <th class="col">Land</th>
+    </tr>
 
+  </table>
 
+  <div class="form-group">
+    <label for="url">Stadt Name</label>
+    <input type="url" class="form-control" id="town" aria-describedby="Stadt Name" placeholder="Stadt Name">
+  </div>
+  <button id="submitButton" class="btn btn-primary" onClick='submitForm()' name="Submit">Absenden</button>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    function updateTable(input) {
+      console.log(input)
+      $('#table tr:last').after('<tr>...</tr><tr>...</tr>');
+    }
+
+    function submitForm() {
+      $.getJSON("http://127.0.0.1:8080/get/cities", function getData(res) {
+        res.forEach(entry => {
+          console.log(entry)
+          $('#tab tr:last').after(`<tr><td>${entry.cityID}</td><td>${entry.name}</td><td>${entry.countryID}</td></tr>`);
+        });
+      });
+    }
+/*
+        function submitForm() {
+          $.ajax({
+            url: "http://127.0.0.1:8080/get/cities",// + $('#town').val(),
+            type: 'GET',
+            contentType: 'application/json',
+            async: false
+          });
+        }
+        */
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 
 </html>
