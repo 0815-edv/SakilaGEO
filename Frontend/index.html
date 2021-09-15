@@ -8,7 +8,7 @@
   <title>SekilaGEO</title>
 </head>
 
-<body>
+<body onLoad='getData()'>
   <table id="tab" class="table">
     <tr>
       <th class="col">ID</th>
@@ -24,32 +24,7 @@
   </div>
   <button id="submitButton" class="btn btn-primary" onClick='submitForm()' name="Submit">Absenden</button>
 
-  <script>
-    function updateTable(input) {
-      console.log(input)
-      $('#table tr:last').after('<tr>...</tr><tr>...</tr>');
-    }
-
-    function submitForm() {
-      $.getJSON("http://127.0.0.1:8080/get/cities", function getData(res) {
-        res.forEach(entry => {
-          console.log(entry)
-          $('#tab tr:last').after(`<tr><td>${entry.cityID}</td><td>${entry.name}</td><td>${entry.countryID}</td></tr>`);
-        });
-      });
-    }
-/*
-        function submitForm() {
-          $.ajax({
-            url: "http://127.0.0.1:8080/get/cities",// + $('#town').val(),
-            type: 'GET',
-            contentType: 'application/json',
-            async: false
-          });
-        }
-        */
-  </script>
-
+  <script src="app.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
