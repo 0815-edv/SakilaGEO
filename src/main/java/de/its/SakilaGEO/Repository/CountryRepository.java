@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author markus
  */
-public interface CountryRepositpry extends JpaRepository<Country, Long> {
+public interface CountryRepository extends JpaRepository<Country, Long> {
 
     Optional<Country> findByName(String name);
 }

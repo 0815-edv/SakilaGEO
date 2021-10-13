@@ -5,6 +5,8 @@
  */
 package de.its.SakilaGEO.Controller;
 
+import de.its.SakilaGEO.Cache.CityCache;
+import de.its.SakilaGEO.Cache.DBCache;
 import de.its.SakilaGEO.City;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CityController {
 
     private CityRepository repo;
+    private DBCache cache = new DBCache();
+    CityCache c = new CityCache();
 
     public CityController(CityRepository repo) {
         this.repo = repo;
+        cache.addObserver(c);
     }
 
     /**
@@ -38,7 +43,7 @@ public class CityController {
      */
     @GetMapping(path = "/get/cities", produces = "application/json")
     public ResponseEntity<List<City>> getCities() {
-        return ResponseEntity.ok(repo.findAll());
+        return ResponseEntity.ok(c.getAll());
     }
 
     /**
@@ -49,9 +54,9 @@ public class CityController {
      */
     @GetMapping(path = "/get/city", produces = "application/json")
     public ResponseEntity<City> getCity(@RequestParam(value = "id", required = true) long id) {
-        var city = repo.findById(id);
-        if (!city.isEmpty()) {
-            return ResponseEntity.ok(city.get());
+        var city = c.getCityByID(id);
+        if (city != null) {
+            return ResponseEntity.ok(city);
         }
         return null;
     }
@@ -63,10 +68,10 @@ public class CityController {
      * @return
      */
     @GetMapping(path = "/get/cityByID", produces = "application/json")
-    public ResponseEntity<List<City>> getCitybyID(@RequestParam(value = "id", required = true) long id) {
-        var city = repo.findBycountryID(id);
-        if (!city.isEmpty()) {
-            return ResponseEntity.ok(city.get());
+    public ResponseEntity<City> getCitybyID(@RequestParam(value = "id", required = true) long id) {
+        var city = c.getCountryByID(id);
+        if (city != null) {
+            return ResponseEntity.ok(city);
         }
         return null;
     }
@@ -80,9 +85,10 @@ public class CityController {
      */
     @ApiOperation(value = "Add City to Database")
     @PostMapping(path = "/set/city")
-    public ResponseEntity<String> setCity(@RequestParam String cityName, @RequestParam long countryID) {
-        if (repo.findByName(cityName).isEmpty()) {
+    public ResponseEntity<String> setCity(@RequestParam String cityName, @RequestParam long countryID) {       
+        if (c.findByName(cityName) == null) {
             repo.save(new City(cityName, countryID));
+            cache.notifyObservers();
             return new ResponseEntity<>("City entity added successfully.", HttpStatus.OK);
         }
         return new ResponseEntity<>("City entity already added.", HttpStatus.CONFLICT);
@@ -97,8 +103,9 @@ public class CityController {
     @ApiOperation(value = "Delete City from Database")
     @DeleteMapping(path = "/del/city")
     public ResponseEntity<String> deleteCity(@RequestParam(value = "id", required = true) long id) {
-        if (!repo.findById(id).isEmpty()) {
+        if (c.getCityByID(id) != null) {
             repo.deleteById(id);
+            cache.notifyObservers();
             return new ResponseEntity<>("City entity deleted successfully.", HttpStatus.OK);
         }
         return new ResponseEntity<>("City entity not found.", HttpStatus.NOT_FOUND);
@@ -115,12 +122,13 @@ public class CityController {
     @ApiOperation(value="Update City")
     @PatchMapping(path="/update/city")
     public ResponseEntity<String> updateCity(@RequestParam(value = "id", required = true) long id, @RequestParam(required = true) String cityName, @RequestParam(required = true) long countryID) {
-        var getCity = repo.findById(id).get();
+        var getCity = c.getCityByID(id);
         City update = new City();
         update.setName(cityName);
         update.setCountryID(countryID);
 
         repo.save(getCity.update(update));
+        cache.notifyObservers();
         return new ResponseEntity<>("City entity updated.", HttpStatus.OK);
     }
 
